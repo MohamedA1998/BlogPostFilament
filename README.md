@@ -7,9 +7,9 @@ Users can make comments on blogs and like
 
 After installing the project and node_modules , composer
 - php artisan migrate
-- To Create Admin And Factory data
 - php artisan db:seed
+To Create Admin And Factory data
 
 When You Wont To  login By Admin
-email       : admin@admin.com
-password    : password
+- email       : admin@admin.com
+- password    : password
