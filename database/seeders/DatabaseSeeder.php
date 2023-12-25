@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
@@ -18,9 +19,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        if ($this->command->ask('Do You Wont To Resfesh Database', 'yes')) {
+        if ($this->command->confirm('Do You Want To Refresh The Database', true)) {
             $this->command->call('migrate:refresh');
+            $this->command->info('DataBase Was Refreshed');
         }
+
+        Cache::flush();
 
         User::factory()->create([
             'name' => 'Admin',
