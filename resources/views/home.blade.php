@@ -24,7 +24,7 @@
                 </div>
             </div>
             <a class="mt-10 block text-center text-lg text-yellow-500 font-semibold"
-                href="http://127.0.0.1:8000/blog">More Posts</a>
+                href="{{ route('posts.index') }}">More Posts</a>
         </div>
         <hr>
 
@@ -41,7 +41,7 @@
                 @endforelse
 
             </div>
-            <a class="mt-10 block text-center text-lg text-yellow-500 font-semibold" href="http://127.0.0.1:8000/blog">
+            <a class="mt-10 block text-center text-lg text-yellow-500 font-semibold" href="{{ route('posts.index') }}">
                 More Posts
             </a>
         </div>

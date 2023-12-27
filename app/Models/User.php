@@ -13,6 +13,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -101,13 +102,13 @@ class User extends Authenticatable implements FilamentUser
     }
 
 
-    public function Likes(): BelongsToMany
+    public function PostLikes(): MorphToMany
     {
-        return $this->belongsToMany(Post::class, 'user_like_post')->withTimestamps();
+        return $this->morphedByMany(Post::class, 'likable', 'likables');
     }
 
-    public function hasLiked(Post $post)
+    public function CommentLikes(): MorphToMany
     {
-        return $this->likes()->where('post_id', $post->id)->exists();
+        return $this->morphedByMany(Comment::class, 'likable', 'likables');
     }
 }

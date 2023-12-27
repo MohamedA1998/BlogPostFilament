@@ -26,8 +26,9 @@
 
                     <span class="text-gray-500">{{ $comment->created_at->diffforhumans() }}</span>
                 </div>
-                <div class="text-justify text-gray-700  text-sm">
+                <div class="text-justify text-gray-700  text-sm flex justify-between">
                     {{ $comment->comment }}
+                    <livewire:like-button :key="'likecommentbutton-' . $comment->id" :model="$comment" />
                 </div>
             </div>
         @empty

@@ -16,9 +16,12 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+        $colors = collect(['gray', 'blue', 'red', 'yellow']);
         return [
             'title' => $this->faker->word,
             'slug' => $this->faker->slug(3),
+            'text_color'    => $colors->random(),
+            'bg_color'    => $colors->random()
         ];
     }
 }

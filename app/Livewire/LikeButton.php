@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Post;
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Attributes\Reactive;
 use Livewire\Component;
 
@@ -10,7 +10,7 @@ class LikeButton extends Component
 {
 
     #[Reactive]
-    public Post $post;
+    public Model $model;
 
     public function toggleLike()
     {
@@ -18,13 +18,7 @@ class LikeButton extends Component
             return $this->redirect(route('login'), true);
         }
 
-        $user = auth()->user();
-
-        if ($user->hasLiked($this->post)) {
-            return $user->likes()->detach($this->post);
-        }
-
-        $user->likes()->attach($this->post);
+        $this->model->likes()->toggle(auth()->user());
     }
 
 

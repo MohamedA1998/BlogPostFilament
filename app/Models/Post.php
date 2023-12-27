@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -33,9 +34,9 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function likes(): BelongsToMany
+    public function likes(): MorphToMany
     {
-        return $this->belongsToMany(User::class, 'user_like_post')->withTimestamps();
+        return $this->morphToMany(User::class, 'likable');
     }
 
     public function categorys(): BelongsToMany
